@@ -52,13 +52,15 @@ use Mailgun\Mailgun;
 			# code...
 		} elseif ($subject == 'pdf') { //pdf has been asked
 			
-			$pdf_command = "wkhtmltopdf --load-error-handling ignore";
+			//$pdf_command = "wkhtmltopdf --load-error-handling ignore";
  
-			$pdf_dir = "/usr/share/nginx/html/pdf/";
+			//$pdf_dir = "/usr/share/nginx/html/pdf/";
 
-			$pdf_ex = "$pdf_command $subject " . $pdf_dir . $random_name.'.pdf';
+			//$pdf_file_name = $random_name.'.pdf'
+//
+			//$pdf_ex = "$pdf_command $subject " . $pdf_dir . $pdf_file_name;
 
-			$pdf_output = shell_exec($pdf_ex);
+			//$pdf_output = shell_exec($pdf_ex);
 
 		} else {
 			// no real request was made so just return text data
