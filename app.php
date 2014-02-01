@@ -7,9 +7,9 @@
 	$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 	$domain = "opencuba.net";
 
-	$to = $_GET['from'];
-	$subject = $_GET['subject'];
-	$body = $_GET['stripped-text'];
+	$to = $_POST['from'];
+	$subject = $_POST['subject'];
+	$body = $_POST['stripped-text'];
 	$random_name = rand();
 
 	if ($body == 'texto') {
