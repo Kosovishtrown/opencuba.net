@@ -26,14 +26,14 @@ use Mailgun\Mailgun;
 		$domain = "sandbox77528.mailgun.org";
 
 		$to = $_POST['from'];
-		$subject = $_POST['stripped-text'];
-		$body = $_POST['content'];
+		$subject = $_POST['subject'];
+		$body = $_POST['stripped-text'];
 
 		$random_name = rand(5, 15);
 
 
 
-		if ($_POST['stripped-text'] == 'texto') {
+		if ($subject == 'texto') {
 
 			$pages = 'https://www.readability.com/api/content/v1/parser?url='.$subject.'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
 			$pages_json = file_get_contents($pages); 
