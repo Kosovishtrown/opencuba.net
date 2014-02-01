@@ -36,7 +36,8 @@ use Mailgun\Mailgun;
 			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
 			  	      'to'      => $_POST['from'],
 			  	      'subject' => 'Hello',
-			  	      'text'    => $pages)
+			  	      'text'    => 'hola',
+			  		  'html'    => $pages['content'])
 			  	);
 
 		}
