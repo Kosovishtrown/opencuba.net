@@ -50,7 +50,7 @@ use Mailgun\Mailgun;
  
 			$pdf_dir = "/usr/share/nginx/html/pdf/";
 
-			$pdf_file_name = $random_name.'.pdf'
+			$pdf_file_name = $random_name.'.pdf';
 
 			$pdf_ex = "$pdf_command $subject " . $pdf_dir . $pdf_file_name;
 
