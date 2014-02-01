@@ -25,16 +25,19 @@ use Mailgun\Mailgun;
 		$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 		$domain = "sandbox77528.mailgun.org";
 
+		$to = $_POST['from'];
+		$subject = $_POST['subject'];
+		$body = $_POST['stripped-text'];
 
-		if ($_POST['stripped-text'] == 'texto') {
+		if ($body == 'texto') {
 
-			$texto = 'https://www.readability.com/api/content/v1/parser?url='.$_POST['subject'].'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
+			$texto = 'https://www.readability.com/api/content/v1/parser?url='.$subject.'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
 			$texto_json = file_get_contents($texto); 
 			$texto = json_decode($texto_json, TRUE);
 			
 			$result = $mgClient->sendMessage("$domain",
 			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
-			  	      'to'      => $_POST['from'],
+			  	      'to'      => $to,
 			  	      'subject' => 'Hello',
 			  	      'text'    => 'hola',
 			  		  'html'    => $texto['content'])
