@@ -50,7 +50,7 @@
 	} elseif ($body == 'imagen') {
 		# start the image request
 
-		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore --quality 50";
+		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore --quality 60";
  
 		$image_dir = "/usr/share/nginx/html/images/";
 
