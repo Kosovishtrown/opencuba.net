@@ -28,10 +28,10 @@ use Mailgun\Mailgun;
 
 		# Make the call to the client.
 		$result = $mgClient->sendMessage("$domain",
-		  	array('from'    => 'Excited User <test@sandbox77528.mailgun.org>',
-		  	      'to'      => 'Dan Vera <dan@yovu.co>',
+		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+		  	      'to'      => $_POST['from'],
 		  	      'subject' => 'Hello',
-		  	      'text'    => 'Testing some Mailgun '.$_POST['sender'].' , '.$_POST['from'].' awesomeness!')
+		  	      'text'    => 'Testing some Mailgun awesomeness!')
 		  	);
 
 	}
