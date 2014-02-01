@@ -8,7 +8,7 @@ use Mailgun\Mailgun;
 	
     //Routes
 	$app->get('/', 'home');
-	$app->get('/convert', 'convert');
+	$app->post('/convert', 'convert');
 
 	$app->run();
 	
