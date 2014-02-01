@@ -94,7 +94,7 @@
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
-		  	      'text'    => $subject.', '.$_POST['recipient'])
+		  	      'text'    => $subject.', '.$_POST['Cc'])
 		  	);
 
 	}
