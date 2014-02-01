@@ -22,17 +22,26 @@ use Mailgun\Mailgun;
 
 	function convert() {
 		
-		# Instantiate the client.
 		$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 		$domain = "sandbox77528.mailgun.org";
 
-		# Make the call to the client.
-		$result = $mgClient->sendMessage("$domain",
-		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
-		  	      'to'      => $_POST['from'],
-		  	      'subject' => 'Hello',
-		  	      'text'    => 'Testing some Mailgun awesomeness!')
-		  	);
+
+		if ($_POST['stripped-text'] == 'texto') {
+
+			$pages = 'https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
+			$pages_json = file_get_contents($pages); 
+			$pages = json_decode($pages_json, TRUE);
+			
+			$result = $mgClient->sendMessage("$domain",
+			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+			  	      'to'      => $_POST['from'],
+			  	      'subject' => 'Hello',
+			  	      'text'    => $pages)
+			  	);
+
+		}
+
+		
 
 	}
 	
