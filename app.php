@@ -12,6 +12,12 @@
 	$body = $_POST['stripped-text'];
 	$random_name = rand();
 
+	if (isset($_POST['Cc'])) {
+		$cc = $_POST['Cc'];
+	} else {
+		$cc = '';
+	}
+
 	if ($body == 'texto') {
 
 		$texto = 'https://www.readability.com/api/content/v1/parser?url='.$subject.'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
@@ -21,6 +27,7 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
+		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject,
 		  		  'html'    => $texto['content'])
@@ -43,6 +50,7 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
+		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
 		  	array('attachment' => array($pdf_url)));
@@ -65,44 +73,32 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
+		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
 		  	array('attachment' => array($image_url)));
 	
 	} else {
 
-		//$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore --quality 60";
+		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore --quality 60";
  
-		//$image_dir = "/usr/share/nginx/html/images/";
+		$image_dir = "/usr/share/nginx/html/images/";
 
-		//$image_file_name = $random_name.'.jpg';
+		$image_file_name = $random_name.'.jpg';
 
-		//$image_ex = "$image_command $subject " . $image_dir . $image_file_name;
+		$image_ex = "$image_command $subject " . $image_dir . $image_file_name;
 
-		//$image_output = shell_exec($image_ex); //execute the pdf converter
+		$image_output = shell_exec($image_ex); //execute the pdf converter
 
-		//$image_url = $image_dir."".$image_file_name; //build url for mime convertion
+		$image_url = $image_dir."".$image_file_name; //build url for mime convertion
 		
-		//$result = $mgClient->sendMessage("$domain",
-		//  	array('from'    => 'Open Cuba <responde@opencuba.net>',
-		//  	      'to'      => $to,
-		//  	      'subject' => 'Hello',
-		//  	      'text'    => $subject),
-		//  	array('attachment' => array($image_url)));
-
-		if (isset($_POST['Cc'])) {
-			$cc = $_POST['Cc'];
-		} else {
-			$cc = '';
-		}
-
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
-		  	      'cc'      => $cc,
+				  'cc'      => $cc,
 		  	      'subject' => 'Hello',
-		  	      'text'    => $subject.', '.$_POST['Cc'])
-		  	);
+		  	      'text'    => $subject),
+		  	array('attachment' => array($image_url)));
 
 	}
 
