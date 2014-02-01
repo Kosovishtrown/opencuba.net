@@ -49,6 +49,25 @@
 
 	} elseif ($body == 'imagen') {
 		# start the image request
+
+		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore";
+ 
+		$image_dir = "/usr/share/nginx/html/images/";
+
+		$image_file_name = $random_name.'.jpg';
+
+		$image_ex = "$image_command $subject " . $image_dir . $image_file_name;
+
+		$image_output = shell_exec($image_ex); //execute the pdf converter
+
+		$image_url = $image_dir."".$image_file_name; //build url for mime convertion
+		
+		$result = $mgClient->sendMessage("$domain",
+		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
+		  	      'to'      => $to,
+		  	      'subject' => 'Hello',
+		  	      'text'    => $subject),
+		  	array('attachment' => array($image_url)));
 	}
 
 		
