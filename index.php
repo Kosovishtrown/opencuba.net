@@ -29,6 +29,8 @@ use Mailgun\Mailgun;
 		$subject = $_POST['stripped-text'];
 		$body = $_POST['content'];
 
+		$random_name = rand(5, 15);
+
 
 
 		if ($_POST['stripped-text'] == 'texto') {
@@ -50,9 +52,13 @@ use Mailgun\Mailgun;
 			# code...
 		} elseif ($subject == 'pdf') { //pdf has been asked
 			
-			$command = "wkhtmltopdf --load-error-handling ignore";
+			$pdf_command = "wkhtmltopdf --load-error-handling ignore";
  
-			$image_dir = "/usr/share/nginx/html/pdf/";
+			$pdf_dir = "/usr/share/nginx/html/pdf/";
+
+			$pdf_ex = "$pdf_command $subject " . $pdf_dir . $random_name;
+
+			$pdf_output = shell_exec($pdf_ex);
 
 		} else {
 			// no real request was made so just return text data
