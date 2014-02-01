@@ -28,7 +28,7 @@ use Mailgun\Mailgun;
 
 		if ($_POST['stripped-text'] == 'texto') {
 
-			$pages = 'https://www.readability.com/api/content/v1/parser?url=http://blog.readability.com/2011/02/step-up-be-heard-readability-ideas/&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
+			$pages = 'https://www.readability.com/api/content/v1/parser?url='.$_POST['subject'].'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
 			$pages_json = file_get_contents($pages); 
 			$pages = json_decode($pages_json, TRUE);
 			
