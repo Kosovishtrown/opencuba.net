@@ -45,8 +45,8 @@
 		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
-		  	      'text'    => $pdf_url)
-		  	);
+		  	      'text'    => $pdf_url),
+		  	array('attachment' => array($pdf_url)));
 
 	} elseif ($body == 'imagen') {
 		# start the image request
