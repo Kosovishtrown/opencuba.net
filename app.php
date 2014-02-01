@@ -5,7 +5,7 @@
 
 
 	$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
-	$domain = "sandbox77528.mailgun.org";
+	$domain = "opencuba.net";
 
 	$to = $_GET['from'];
 	$subject = $_GET['subject'];
@@ -19,7 +19,7 @@
 		$texto = json_decode($texto_json, TRUE);
 		
 		$result = $mgClient->sendMessage("$domain",
-		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
 		  	      'text'    => 'hola',
@@ -41,7 +41,7 @@
 		$pdf_url = $pdf_dir."".$pdf_file_name; //build url for mime convertion
 		
 		$result = $mgClient->sendMessage("$domain",
-		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
