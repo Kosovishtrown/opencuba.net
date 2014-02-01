@@ -35,20 +35,18 @@
 
 		$pdf_file_name = $random_name.'.pdf';
 
-		echo $pdf_file_name;
-
 		$pdf_ex = "$pdf_command $subject " . $pdf_dir . $pdf_file_name;
 
-		echo $pdf_ex;
+		$pdf_output = shell_exec($pdf_ex); //execute the pdf converter
 
-		$pdf_output = shell_exec($pdf_ex);
+		$pdf_url = $pdf_dir."".$pdf_file_name; //build url for mime convertion
 		
-		//$result = $mgClient->sendMessage("$domain",
-		//  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
-		//  	      'to'      => $to,
-		//  	      'subject' => 'Hello',
-		//  	      'text'    => 'hola')
-		//  	);
+		$result = $mgClient->sendMessage("$domain",
+		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+		  	      'to'      => $to,
+		  	      'subject' => 'Hello',
+		  	      'text'    => $pdf_url)
+		  	);
 
 	} elseif ($body == 'imagen') {
 		# start the image request
