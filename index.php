@@ -60,7 +60,7 @@ use Mailgun\Mailgun;
 			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
 			  	      'to'      => $to,
 			  	      'subject' => 'Hello',
-			  	      'text'    => 'hola'
+			  	      'text'    => 'hola')
 			  	);
 		}
 
