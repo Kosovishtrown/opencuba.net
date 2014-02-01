@@ -27,7 +27,6 @@
 		  	);
 
 	} elseif ($body == 'pdf') {
-		echo "pdf";
 
 		$pdf_command = "/usr/local/bin/wkhtmltopdf --load-error-handling ignore";
  
@@ -45,7 +44,7 @@
 		  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
-		  	      'text'    => $pdf_url),
+		  	      'text'    => $subject),
 		  	array('attachment' => array($pdf_url)));
 
 	} elseif ($body == 'imagen') {
