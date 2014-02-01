@@ -24,7 +24,7 @@
 		$texto_json = file_get_contents($texto); 
 		$texto = json_decode($texto_json, TRUE);
 
-		$texto_m = preg_replace('/<a href="([^"]*)"(.*)>/', '<a href="mailto:responde@opencuba.net?Subject=$1&body=texto">$2</a>', $texto['content']);
+		$texto_m = preg_replace('/<a href="([^"]*)"(.*)>/', '<a href="mailto:responde@opencuba.net?subject=$1&body=texto">$2</a>', $texto['content']);
 
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
@@ -51,7 +51,6 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
-		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
 		  	array('attachment' => array($pdf_url)));
@@ -74,7 +73,6 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
-		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
 		  	array('attachment' => array($image_url)));
@@ -96,7 +94,6 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
-				  'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject),
 		  	array('attachment' => array($image_url)));
