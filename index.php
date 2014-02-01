@@ -25,45 +25,20 @@ use Mailgun\Mailgun;
 		$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 		$domain = "sandbox77528.mailgun.org";
 
-		$to = $_POST['from'];
-		$subject = $_POST['subject'];
-		$body = $_POST['stripped-text'];
 
-		$random_name = rand(5, 15);
+		if ($_POST['stripped-text'] == 'texto') {
 
-
-
-		if ($subject == 'texto') {
-
-			$pages = 'https://www.readability.com/api/content/v1/parser?url='.$subject.'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
-			$pages_json = file_get_contents($pages); 
-			$pages = json_decode($pages_json, TRUE);
+			$texto = 'https://www.readability.com/api/content/v1/parser?url='.$_POST['subject'].'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
+			$texto_json = file_get_contents($texto); 
+			$texto = json_decode($texto_json, TRUE);
 			
 			$result = $mgClient->sendMessage("$domain",
 			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
-			  	      'to'      => $to,
+			  	      'to'      => $_POST['from'],
 			  	      'subject' => 'Hello',
 			  	      'text'    => 'hola',
-			  		  'html'    => $body)
+			  		  'html'    => $texto['content'])
 			  	);
-
-		} elseif ($subject == 'imagen') {
-			
-			# code...
-		} elseif ($subject == 'pdf') { //pdf has been asked
-			
-			//$pdf_command = "wkhtmltopdf --load-error-handling ignore";
- 
-			//$pdf_dir = "/usr/share/nginx/html/pdf/";
-
-			//$pdf_file_name = $random_name.'.pdf'
-//
-			//$pdf_ex = "$pdf_command $subject " . $pdf_dir . $pdf_file_name;
-
-			//$pdf_output = shell_exec($pdf_ex);
-
-		} else {
-			// no real request was made so just return text data
 
 		}
 
