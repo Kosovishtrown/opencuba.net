@@ -90,9 +90,16 @@
 		//  	      'text'    => $subject),
 		//  	array('attachment' => array($image_url)));
 
+		if (isset($_POST['Cc'])) {
+			$cc = $_POST['Cc'];
+		} else {
+			$cc = '';
+		}
+
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
+		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject.', '.$_POST['Cc'])
 		  	);
