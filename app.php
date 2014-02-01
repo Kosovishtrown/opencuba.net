@@ -7,13 +7,13 @@
 	$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 	$domain = "opencuba.net";
 
-	$to = $_GET['from'];
-	$subject = $_GET['subject'];
-	$body = $_GET['stripped-text'];
+	$to = $_POST['from'];
+	$subject = $_POST['subject'];
+	$body = $_POST['stripped-text'];
 	$random_name = rand();
 
-	if (isset($_GET['Cc'])) {
-		$cc = $_GET['Cc'];
+	if (isset($_POST['Cc'])) {
+		$cc = $_POST['Cc'];
 	} else {
 		$cc = '';
 	}
@@ -29,7 +29,6 @@
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
-		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject,
 		  		  'html'    => $texto_m)
