@@ -28,6 +28,7 @@ use Mailgun\Mailgun;
 		$to = $_POST['from'];
 		$subject = $_POST['subject'];
 		$body = $_POST['stripped-text'];
+		$random_name = rand(5, 15);
 
 		if ($body == 'texto') {
 
@@ -43,6 +44,24 @@ use Mailgun\Mailgun;
 			  		  'html'    => $texto['content'])
 			  	);
 
+		} elseif ($body == 'pdf') {
+
+			$pdf_command = "wkhtmltopdf --load-error-handling ignore";
+ 
+			$pdf_dir = "/usr/share/nginx/html/pdf/";
+
+			$pdf_file_name = $random_name.'.pdf'
+
+			$pdf_ex = "$pdf_command $subject " . $pdf_dir . $pdf_file_name;
+
+			$pdf_output = shell_exec($pdf_ex);
+			
+			$result = $mgClient->sendMessage("$domain",
+			  	array('from'    => 'Excited User <bob@sandbox77528.mailgun.org>',
+			  	      'to'      => $to,
+			  	      'subject' => 'Hello',
+			  	      'text'    => 'hola'
+			  	);
 		}
 
 		
