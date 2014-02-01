@@ -7,13 +7,13 @@
 	$mgClient = new Mailgun('key-4npkxa6n706uqaxa58ixijv83vdmjwo7');
 	$domain = "opencuba.net";
 
-	$to = $_POST['from'];
-	$subject = $_POST['subject'];
-	$body = $_POST['stripped-text'];
+	$to = $_GET['from'];
+	$subject = $_GET['subject'];
+	$body = $_GET['stripped-text'];
 	$random_name = rand();
 
-	if (isset($_POST['Cc'])) {
-		$cc = $_POST['Cc'];
+	if (isset($_GET['Cc'])) {
+		$cc = $_GET['Cc'];
 	} else {
 		$cc = '';
 	}
@@ -23,14 +23,16 @@
 		$texto = 'https://www.readability.com/api/content/v1/parser?url='.$subject.'&token=20fe51c16c041aadddf1cd3595cd84701f708c67';
 		$texto_json = file_get_contents($texto); 
 		$texto = json_decode($texto_json, TRUE);
-		
+
+		$texto_m = preg_replace('/<a href="([^"]*)"(.*)>/', '<a href="mailto:responde@opencuba.net?Subject=$1&body=texto">$2</a>', $texto['content']);
+
 		$result = $mgClient->sendMessage("$domain",
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
 		  	      'cc'      => $cc,
 		  	      'subject' => 'Hello',
 		  	      'text'    => $subject,
-		  		  'html'    => $texto['content'])
+		  		  'html'    => $texto_m)
 		  	);
 
 	} elseif ($body == 'pdf') {
