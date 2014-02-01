@@ -22,13 +22,13 @@
 		  	array('from'    => 'Open Cuba <responde@opencuba.net>',
 		  	      'to'      => $to,
 		  	      'subject' => 'Hello',
-		  	      'text'    => 'hola',
+		  	      'text'    => $subject,
 		  		  'html'    => $texto['content'])
 		  	);
 
 	} elseif ($body == 'pdf') {
 
-		$pdf_command = "/usr/local/bin/wkhtmltopdf --load-error-handling ignore";
+		$pdf_command = "/usr/local/bin/wkhtmltopdf --load-error-handling ignore -l";
  
 		$pdf_dir = "/usr/share/nginx/html/pdf/";
 
@@ -50,7 +50,7 @@
 	} elseif ($body == 'imagen') {
 		# start the image request
 
-		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore";
+		$image_command = "/usr/local/bin/wkhtmltoimage --load-error-handling ignore --quality 50";
  
 		$image_dir = "/usr/share/nginx/html/images/";
 
