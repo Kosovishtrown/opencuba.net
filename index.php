@@ -31,7 +31,7 @@ use Mailgun\Mailgun;
 		  	array('from'    => 'Excited User <test@sandbox77528.mailgun.org>',
 		  	      'to'      => 'Dan Vera <dan@yovu.co>',
 		  	      'subject' => 'Hello',
-		  	      'text'    => 'Testing some Mailgun'.$_POST['sender'].' , '.$_POST['from'].' awesomeness!')
+		  	      'text'    => 'Testing some Mailgun '.$_POST['sender'].' , '.$_POST['from'].' awesomeness!')
 		  	);
 
 	}
