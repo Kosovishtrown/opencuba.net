@@ -48,9 +48,12 @@ use Mailgun\Mailgun;
 		} elseif ($subject == 'imagen') {
 			
 			# code...
-		} elseif ($subject == 'pdf') {
+		} elseif ($subject == 'pdf') { //pdf has been asked
 			
-			# code...
+			$command = "wkhtmltopdf --load-error-handling ignore";
+ 
+			$image_dir = "/usr/share/nginx/html/pdf/";
+
 		} else {
 			// no real request was made so just return text data
 
